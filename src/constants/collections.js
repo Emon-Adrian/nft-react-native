@@ -1,9 +1,12 @@
 /* eslint-disable prettier/prettier */
+import cyberpunk1 from '../assets/collections/cyberpunk1.png';
+
 const collections = [
     {
       id: '1',
       name: 'Cyberpunk',
       image: require('../assets/collections/cyberPunk1.png'),
+      //image: cyberpunk1,
       price: '0.23',
       creator: 'Anna',
       creatorImage: require('../assets/creators/creator1.jpg'),

@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import cyberpunk1 from '../assets/collections/cyberpunk1.png';
+//import cyberpunk1 from '../assets/collections/cyberpunk1.png';
 
 const collections = [
     {

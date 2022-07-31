@@ -4,11 +4,15 @@ import {View, Text, FlatList, SafeAreaView, StatusBar, StyleSheet, TouchableOpac
 import COLORS from '../../constants/colors';
 import collections from '../../constants/collections';
 import {  HeartIcon } from "react-native-heroicons/outline";
+import {  BadgeCheckIcon } from "react-native-heroicons/solid";
 
 const {width} = Dimensions.get('window');
 
 const Card = ({data, navigation}) => {
-    return <TouchableOpacity style={style.Card} activeOpacity={0.7}>
+    return <TouchableOpacity 
+           onPress={()=>navigation.navigate('DetailsScreen', data)} 
+           style={style.Card} 
+           activeOpacity={0.7}>
          <HeartIcon
             style={{position: 'absolute', zIndex:1, right:10, top:20}} 
             color={COLORS.white}
@@ -36,11 +40,27 @@ const Card = ({data, navigation}) => {
     </TouchableOpacity> 
 };
 
-const TrendingCard = () =>{
-   return <View style={style.trendingCard}></View>
+const TrendingCard = ({data}) =>{
+   return <View style={style.trendingCard}>
+      <Image 
+       style={{
+         height: 80, 
+         width: '100%', 
+         borderTopLeftRadius: 10,
+         borderTopRightRadius: 10,
+      }}
+       source={data.image} />
+       <View style={{height:70, width: '100%', alignItems:'center'}}>
+          <Image style={style.creatorImage} source={data.creatorImage}/>
+          <View style={{top:-20, alignItems:'center', flexDirection:'row'}}>
+            <Text style={{fontWeight:'bold', color: COLORS.black, marginRight:2}}>{data.creator}</Text>
+            <BadgeCheckIcon size={16} color={COLORS.violet}/>
+          </View>
+       </View>
+   </View>
 }
 
-const App = ({navigation}) => {
+const HomeScreen = ({navigation}) => {
   return (
      <SafeAreaView style={{flex: 1, backgroundColor: COLORS.white}}>
         <StatusBar barStyle="dark-content" 
@@ -83,7 +103,7 @@ const App = ({navigation}) => {
   );
 };
 
-export default App;
+export default HomeScreen;
 
 const style = StyleSheet.create({
    trendingCard:{
@@ -96,6 +116,14 @@ const style = StyleSheet.create({
       shadowOpacity: 0.2,
       shadowOffset: {height: 10},
       elevation: 10,
+   },
+   creatorImage:{
+      height:45,
+      width:45,
+      borderRadius:45,
+      borderWidth:3,
+      borderColor:COLORS.white,
+      top:-20,
    },
    header: {
       padding: 20,
